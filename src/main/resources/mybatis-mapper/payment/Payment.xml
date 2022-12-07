@@ -2,7 +2,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.websitecreate.mapper.PaymentMapper">
-    <insert id="buy" parameterType="com.example.websitecreate.DTO.PaymentDTO">
-
+    <insert id="buyPoint" parameterType="com.example.websitecreate.DTO.PaymentDTO">
+        INSERT INTO payment(
+                            email,
+                            amount,
+                            uid
+                            )values(
+                                       #{email},
+                                       #{amount},
+                                       #{uid}
+        )
     </insert>
+    <select id="pointList" parameterType="com.example.websitecreate.DTO.PaymentDTO">
+        SELECT email, amount
+            FROM payment
+                WHERE email = #{email} and amount = #{amount}
+
+    </select>
 </mapper>

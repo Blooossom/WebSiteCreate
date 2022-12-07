@@ -16,5 +16,4 @@
 where
     email=#{email} and password = #{password}
     </select>
-
 </mapper>

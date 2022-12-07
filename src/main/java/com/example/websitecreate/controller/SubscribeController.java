@@ -15,8 +15,8 @@ public class SubscribeController {
     SubscribeService ss;
 
     @PostMapping("/subscribe")
-    public String subscribe(@RequestParam("email")String email){
+    public String subscribe(@RequestParam("email") String email){
         ss.subscribe(email);
-        return "index";
+        return "redirect:";
     }
 }

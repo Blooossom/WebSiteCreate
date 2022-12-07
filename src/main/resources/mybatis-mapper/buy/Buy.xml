@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.websitecreate.mapper.BuyMapper">
+    <insert id="buyCoin" parameterType="com.example.websitecreate.DTO.BuyDTO">
+        INSERT INTO buy(
+                        email,
+                        coinId,
+                        name,
+                        price,
+                        amount,
+                        total
+                        )values(
+                                #{email},
+                                #{coinId},
+                                #{name},
+                                #{price},
+                                #{amount},
+                                #{total}
+        )
+    </insert>
+    <select id="checkBalance" parameterType="String" resultType="double">
+        SELECT
+            IFNULL((SELECT sum(amount) from payment where email = #{email}), 0)-
+            IFNULL((SELECT sum(total) from buy where email = #{email}),0)
+        FROM
+            dual
+    </select>
+</mapper>
